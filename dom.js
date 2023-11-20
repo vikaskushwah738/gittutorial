@@ -1,20 +1,31 @@
-// //examin the documet Object
-// //console.dir(document)
+//examin the documet Object
+//console.dir(document)
 
-console.log(document.getElementById('header-title'));
+// console.log(document.URL);
+// console.log(document.title);
+// console.log(document.domain);
+// //document.title =123;
+// console.log(document.body);
+// console.log(document.doctype);
+// console.log(document.head);
+// console.log(document.all);
+// console.log(document.all[10]);
+// //document.all[10].textContent='Hello';
+
+// console.log(document.forms[1]);
+// console.log(document.links);
+
+//get document by id
+
+//console.log(document.getElementById('header-title'));
 let headerTitle= document.getElementById('header-title');
 let header= document.getElementById('main-header');
-//console.log(headerTitle);
+console.log(headerTitle);
+
 header.style.borderBottom ="solid 3px black"
-headerTitle.innerHTML="<h3>Hello</h3>";
+//headerTitle.innerHTML="<h3>Hello</h3>";
+let item=document.getElementById('items');
+item.style.fontWeight='bold';
+item.style.color='green';
 
-let items=document.getElementsByClassName('list-group-item');
-console.log(items);
-console.log(items[1]);
-items[1].textContext= 'Hello';
-items[1].style.fontWeigth= 'bold';
-items[1].style.backgroundColor='yellow';
 
-for(let i=0; i<items.length; i++){
-    items[i].style.backgroundColor='#f4f4f4'
-}
