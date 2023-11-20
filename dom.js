@@ -28,9 +28,26 @@
 // item.style.color='green';
 
 // get element by classname
-let items=document.getElementsByClassName('list-group-item');
-items[2].style.backgroundColor='green';
-for(let i=0; i<items.length; i++){
-    items[i].style.fontWeight='bold';
-}
+// let items=document.getElementsByClassName('list-group-item');
+// items[1].textContent='hello';
+// items[2].style.backgroundColor='green';
+// // show the error
+// //items.style.fontWeight='bold';
+
+// for(let i=0; i<items.length; i++){
+//     items[i].style.fontWeight='bold';
+// }
+
+//get element by tagname
+let li=document.getElementsByTagName('li');
+li[1].textContent='hello';
+li[2].style.backgroundColor='green';
+li[1].style.fontWeight='bold';
+// show the error
+//items.style.fontWeight='bold';
+for(let i of li){
+        i.style.fontWeight ='bold';
+    }
+   
+
 
