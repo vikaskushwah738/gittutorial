@@ -92,8 +92,6 @@ newItem.className = 'list-group-item';
 newItem.innerText = 'Hello ' + firstItem.innerText;
 itemsList.replaceChild(newItem, firstItem);
 
-
-
 // Adding "Hello" before "Item Lister" in the <h1> element
 document.getElementById('header-title').innerText = 'Hello ' + document.getElementById('header-title').innerText;
 
