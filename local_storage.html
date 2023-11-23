@@ -72,6 +72,14 @@
             width: 220px;
         }
 
+        .btnDelete {
+            background-color: black;
+            color: lightgoldenrodyellow;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            width: 20px;
+        }
+
         .error {
             color: red;
         }
@@ -99,12 +107,13 @@
 
     </section>
     <ul id="users"></ul>
-    <ul class="items">
-        <li class="item">Item 1</li>
-        <li class="item">Item 2</li>
-        <li class="item">Item 3</li>
-        <li class="item">Item 4</li>
-    </ul>
+    <!-- <ul class="items">
+       
+        <li class="item" >Item 1 <button class="btnDelete">X</button></li>
+        <li class="item" >Item 2 <button class="btnDelete">X</button></li>
+        <li class="item" >Item 3 <button class="btnDelete">X</button></li>
+        <li class="item" >Item 4 <button class="btnDelete">X</button></li>
+    </ul> -->
     <script>
         //singal elememt
         // console.log(document.getElementById('form_Item'));
@@ -131,9 +140,13 @@
         const emailInput = document.getElementById('email');
         const msg = document.getElementById('msg');
         const listUser = document.getElementById('users');
-        const phoneInput=document.getElementById('phone');
+        const phoneInput = document.getElementById('phone');
+
 
         myform.addEventListener('submit', onSubmit);
+        // Delete event
+        listUser.addEventListener('click', removeItem);
+
         function onSubmit(e) {
             e.preventDefault();
             if (nameInput.value === '' || emailInput.value === '') {
@@ -141,7 +154,7 @@
                 msg.innerHTML = 'Please enter all field';
                 setTimeout(() => msg.remove(), 3000);
             } else {
-               
+
                 const existingUserData = JSON.parse(localStorage.getItem('userData')) || [];
 
                 const userData = {
@@ -157,14 +170,30 @@
 
                 const li = document.createElement('li');
                 li.className = 'item';
-                li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value} : ${phoneInput.value}`));
+                li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value} : ${phoneInput.value}  `));
+
+                const btnDetete = document.createElement('button');
+                btnDetete.className = "btnDelete";
+                btnDetete.appendChild(document.createTextNode('X'));
+                li.appendChild(btnDetete);
                 listUser.appendChild(li);
             }
+           
             //clear filter
             nameInput.value = '';
             emailInput.value = '';
-            phoneInput.value='';
+            phoneInput.value = '';
         }
+        function removeItem(e) {
+                if (e.target.classList.contains('btnDelete')) {
+                    if (confirm('Are You Sure?')) {
+                        var li = e.target.parentElement;
+                        listUser.removeChild(li); // Corrected variable name here
+                        localStorage.removeItem('userData');
+                        //localStorage.clear();
+                    }
+                }
+            }
     </script>
 </body>
 
