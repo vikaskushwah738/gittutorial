@@ -80,6 +80,14 @@
             width: 20px;
         }
 
+        .btnp {
+            background-color: black;
+            color: lightgoldenrodyellow;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            width: 29px;
+        }
+
         .error {
             color: red;
         }
@@ -134,14 +142,14 @@
 
         // const btn =document.querySelector('.btn');
         // btn.style.background='red';
-
+    //--------------------><--------------------------//
+    //--------------------><--------------------------//
         const myform = document.getElementById("form_Item");
         const nameInput = document.getElementById('name');
         const emailInput = document.getElementById('email');
         const msg = document.getElementById('msg');
         const listUser = document.getElementById('users');
         const phoneInput = document.getElementById('phone');
-
 
         myform.addEventListener('submit', onSubmit);
         // Delete event
@@ -154,9 +162,7 @@
                 msg.innerHTML = 'Please enter all field';
                 setTimeout(() => msg.remove(), 3000);
             } else {
-
                 const existingUserData = JSON.parse(localStorage.getItem('userData')) || [];
-
                 const userData = {
                     name: nameInput.value,
                     email: emailInput.value,
@@ -176,24 +182,37 @@
                 btnDetete.className = "btnDelete";
                 btnDetete.appendChild(document.createTextNode('X'));
                 li.appendChild(btnDetete);
+
+                const edit = document.createElement('button');
+                edit.className = "btnp";
+                edit.appendChild(document.createTextNode('Edit'));
+                li.appendChild(edit);
+
                 listUser.appendChild(li);
             }
-           
+
             //clear filter
             nameInput.value = '';
             emailInput.value = '';
             phoneInput.value = '';
         }
         function removeItem(e) {
-                if (e.target.classList.contains('btnDelete')) {
-                    if (confirm('Are You Sure?')) {
-                        var li = e.target.parentElement;
-                        listUser.removeChild(li); // Corrected variable name here
-                        localStorage.removeItem('userData');
-                        //localStorage.clear();
-                    }
+            if (e.target.classList.contains('btnDelete')) {
+                if (confirm('Are You Sure?')) {
+                    var li = e.target.parentElement;
+                    listUser.removeChild(li); // Corrected variable name here
+                    localStorage.removeItem('userData');
+                    //localStorage.clear();
+                }
+            } else if (e.target.classList.contains('btnp')) {
+                let li = e.target.parentElement;
+                let newText = prompt('Edit item:', li.firstChild.textContent);
+                if (newText !== null) {
+                    li.firstChild.textContent = newText;
                 }
             }
+        }
+
     </script>
 </body>
 
