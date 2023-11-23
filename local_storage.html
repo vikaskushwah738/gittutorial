@@ -138,14 +138,18 @@
                 msg.innerHTML = 'Please enter all field';
                 setTimeout(() => msg.remove(), 3000);
             } else {
-                // const userData = {
-                //     name: nameInput.value,
-                //     email: emailInput.value
-                // };
+               
+                const existingUserData = JSON.parse(localStorage.getItem('userData')) || [];
 
+                const userData = {
+                    name: nameInput.value,
+                    email: emailInput.value
+                };
                 // Save data to local storage
-                localStorage.setItem('name', nameInput.value);
-                localStorage.setItem('email', emailInput.value);
+                localStorage.setItem('userData', JSON.stringify(userData));
+                // Save data to local storage
+                //localStorage.setItem('name', nameInput.value);
+                //localStorage.setItem('email', emailInput.value);
 
                 const li = document.createElement('li');
                 li.className = 'item';
