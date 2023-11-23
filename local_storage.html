@@ -91,6 +91,8 @@
                 <input type="text" id="name" name="name"> <br>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email"> <br>
+                <label for="phone">Phone:</label>
+                <input type="phone" id="phone" name="phone"> <br>
                 <input class="btn" type="submit" value="submit">
             </div>
         </form>
@@ -129,6 +131,7 @@
         const emailInput = document.getElementById('email');
         const msg = document.getElementById('msg');
         const listUser = document.getElementById('users');
+        const phoneInput=document.getElementById('phone');
 
         myform.addEventListener('submit', onSubmit);
         function onSubmit(e) {
@@ -143,7 +146,8 @@
 
                 const userData = {
                     name: nameInput.value,
-                    email: emailInput.value
+                    email: emailInput.value,
+                    phone: phoneInput.value
                 };
                 // Save data to local storage
                 localStorage.setItem('userData', JSON.stringify(userData));
@@ -153,12 +157,13 @@
 
                 const li = document.createElement('li');
                 li.className = 'item';
-                li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}`));
+                li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value} : ${phoneInput.value}`));
                 listUser.appendChild(li);
             }
             //clear filter
             nameInput.value = '';
             emailInput.value = '';
+            phoneInput.value='';
         }
     </script>
 </body>
