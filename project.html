@@ -13,7 +13,7 @@
 </head>
 
 <body>
-  <div class="container">
+  <div class="container"><br>
     <form id="form_info" style="width: 500px;">
       <div id="msg"></div>
       <label class="form-label" for="choosexpence">Choose expenceamount</label>
@@ -60,7 +60,6 @@
     }
 
     function saveToLocalStorage(users) {
-      console.log(users);
       localStorage.setItem('users', JSON.stringify(users));
     }
 
