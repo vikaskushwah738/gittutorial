@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>axios</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js"></script>
+</head>
+
+<body>
+    <form id="myForm">
+        <label for="name">Name</label>
+        <input type="text" id="name" placeholder="Name">
+        <label for="email">Email</label>
+        <input type="text" id="email" placeholder="Email">
+        <label for="number">Number</label>
+        <input type="text" id="number" placeholder="Number">
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Submitted Data:</h2>
+    <ul id="users"></ul>
+    <script>
+        const email = document.getElementById('email')
+        const number = document.getElementById('number')
+        const name = document.getElementById('name')
+        const listUser = document.getElementById('users');
+        const myForm = document.getElementById('myForm')
+
+        myForm.addEventListener('submit', onSubmit);
+
+        listUser.addEventListener('click', removeItem);
+
+        function onSubmit(e) {
+            e.preventDefault();
+            const formData = {
+                name: name.value,
+                email: email.value,
+                number: number.value
+            };
+
+            //localStorage.setItem('formData', JSON.stringify(formData));
+
+            const li = document.createElement('li');
+            li.appendChild(document.createTextNode(`${name.value} : ${email.value} : ${number.value}  `));
+
+            const btnDetete = document.createElement('button');
+            btnDetete.className = "btnDelete";
+            btnDetete.appendChild(document.createTextNode('X'));
+            li.appendChild(btnDetete);
+
+            const edit = document.createElement('button');
+            edit.className = "btnp";
+            edit.appendChild(document.createTextNode('Edit'));
+            li.appendChild(edit);
+            listUser.appendChild(li);
+           
+            axios.post("https://crudcrud.com/api/65f3cdf773eb468897e7ffe8ddfde33c/appointmentData", formData)
+                .then(function (response) {
+                    
+                    console.log(response);
+                })
+                .catch(function (error) {
+                    document.body.innerHTML=document.body.innerHTML +"<h4>somethink want wrong</h4>"
+                    console.error(error);
+                });
+
+           
+            name.value = '';
+            email.value = '';
+            number.value = '';
+        }
+
+        function removeItem(e) {
+            if (e.target.classList.contains('btnDelete')) {
+                if (confirm('Are You Sure?')) {
+                    var li = e.target.parentElement;
+                    listUser.removeChild(li); // Corrected variable name here
+                    localStorage.removeItem('userData');
+                    //localStorage.clear();
+                }
+            } else if (e.target.classList.contains('btnp')) {
+                let li = e.target.parentElement;
+                let newText = prompt('Edit item:', li.firstChild.textContent);
+                if (newText !== null) {
+                    li.firstChild.textContent = newText;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

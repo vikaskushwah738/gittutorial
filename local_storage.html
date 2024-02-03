@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
             overflow: hidden;
             margin: 0;
         }
-
         .navbar {
             text-align: center;
             background-color: beige;
@@ -166,10 +164,10 @@
                 listUser.appendChild(li);
             }
 
-            //clear filter
+           //clear filter
             nameInput.value = '';
             emailInput.value = '';
-            phoneInput.value = '';
+            phoneInput.value = ''; 
         }
         function removeItem(e) {
             if (e.target.classList.contains('btnDelete')) {
